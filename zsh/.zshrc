@@ -10,10 +10,6 @@ export ZSH="/Users/riceriley59/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="nord-extended/nord"
 
-export TERM=xterm-256color
-
-alias vim="nvim"
-
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -103,4 +99,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export Path=/usr/local/mysql/bin::/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Applications/kitty.app/Contents/MacOS/ctf/ghidra/ghidra_10.0.0.4_PUBLIC
+source ~/.zsh_profile
+
+alias vim=nvim
+
+export TERM=xterm-256color
