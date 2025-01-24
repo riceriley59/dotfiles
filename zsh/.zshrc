@@ -104,3 +104,6 @@ source ~/.zsh_profile
 alias vim=nvim
 
 export TERM=xterm-256color
+
+# Create start tmux session if it doesn't exist
+tmux-sessionizer start
