@@ -1,5 +1,5 @@
 # dotfiles
-My dotfiles for different tools I use including Neovim, Tmux, Zsh, and Kitty. There is also an install script for easily installation of the tools and their configs including commands and a list of dependencies to install everything that is needed. This is meant to streamline the installation of these configs and increase productivity.
+My dotfiles for different tools I use including Neovim, Tmux, Zsh, and Kitty and also includes custom local scripts that go in `$HOME/.local/scripts` which is added to the path by the `.zshrc`. There is also an install script for easily installation of the tools and their configs including commands and a list of dependencies to install everything that is needed. This is meant to streamline the installation of these configs and increase productivity.
 
 # install script
 The install script sets up all the required configurations for the tools listed below. To use the script, simply clone this repository and run the `install.sh` script.
@@ -13,7 +13,7 @@ chmod +x install.sh
 ./install.sh all
 ```
 
-**Note:** You can choose which dotfiles to install by passing the name of the tool in lowercase to the script (e.g `tmux` or `nvim`) or pass `all` to install all of the dotfiles as seen above.
+**Note:** You can choose which dotfiles to install by passing the name of the tool in lowercase to the script (e.g `tmux`, `scripts`, or `nvim`) or pass `all` to install all of the dotfiles as seen above.
 
 # tmux
 My Tmux configuration includes custom key bindings, status bar settings, and various plugins to improve the terminal workflow. It is designed to increase productivity and provide a comfortable, efficient terminal environment.
@@ -41,3 +41,11 @@ My `Kitty` terminal configuration includes settings that enhance the visual expe
 
 ### dependencies
 * kitty: `curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin`
+
+# scripts
+
+### tmux-sessionizer
+This script can be run with a name as a command which will then create a tmux session with name and attach to it. Or you can run the script with no commands in which it will bring up a fuzzyfinder with all the directories that you have put in to choose from. Then once you choose a directory it will open that directory in a new tmux session thats named after the directory.
+
+#### dependencies
+* fzf
