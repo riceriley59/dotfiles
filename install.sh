@@ -22,12 +22,6 @@ print_help() {
     exit 1
 }
 
-# Ensure at least one argument is provided
-if [ "$#" -lt 1 ]; then
-    red "ERROR: At least one argument is required."
-    print_help
-fi
-
 # Helper function to add unique dependencies
 add_dependency() {
     local dep="$1"
@@ -74,9 +68,11 @@ handle_option() {
             cp -r ./tmux/ $HOME
 
             rm -rf $HOME/.tmux.conf.bak
+
             echo
             yellow "Note: You may need to install TPM by running command below:"
             echo "git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm"
+
             add_dependency "tmux"
             ;;
         kitty)
@@ -86,6 +82,7 @@ handle_option() {
             cp -r ./config/kitty $CONFIG_PATH
 
             rm -rf $CONFIG_PATH/kitty.bak
+
             echo
             yellow "Note: You need to be using Kitty terminal emulator"
             ;;
@@ -96,6 +93,7 @@ handle_option() {
             cp -r ./bin/.local/scripts $LOCAL_PATH/scripts
 
             rm -rf $LOCAL_PATH/scripts.bak
+
             add_dependency "tmux"
             add_dependency "fzf"
             ;;
@@ -106,8 +104,10 @@ handle_option() {
             cp -r ./config/nvim $CONFIG_PATH
 
             rm -rf $CONFIG_PATH/nvim.bak
+
             echo
             yellow "Note: Uses Lazy for plugin manager"
+
             add_dependency "neovim or nvim"
             add_dependency "rg"
             ;;
@@ -131,9 +131,16 @@ handle_option() {
     esac
 }
 
+# Ensure at least one argument is provided
+if [ "$#" -lt 1 ]; then
+    red "ERROR: At least one argument is required."
+    print_help
+fi
+
 # Check if "all" is in the arguments
 if [[ " $* " == *" all "* ]]; then
     handle_option all
+
     echo
     green "Fully Configured Everything!"
     echo
@@ -141,6 +148,7 @@ if [[ " $* " == *" all "* ]]; then
     printf " - %s\n" "${DEPENDENCIES[@]}"
     echo
     yellow "Note: You may need to restart your terminal for changes to take effect"
+
     exit 0
 fi
 
