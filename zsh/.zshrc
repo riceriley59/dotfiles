@@ -109,4 +109,6 @@ export TERM=xterm-256color
 # session if there isn't any
 if ! tmux list-sessions 2>/dev/null | grep -q .; then
     tmux-sessionizer start
+else
+    tmux attach-session
 fi
