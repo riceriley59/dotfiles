@@ -58,8 +58,14 @@ handle_option() {
             rm -rf $HOME/.zshrc.bak
             rm -rf $HOME/.zsh_profile.bak
 
+            echo
+            yellow "Note: You may need to install oh-my-zsh by running the command below:"
+            yellow "sh -c \"\$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\""
+
             add_dependency "zsh"
-            chsh -s $(which zsh) || red "ERROR: zsh needs to be installed, install zsh and then run 'chsh -s \$\(which zsh\)'"
+
+            echo
+            chsh -s $(which zsh) || (red "ERROR: zsh needs to be installed, install zsh and then run 'chsh -s \$\(which zsh\)'"; exit 1)
             ;;
         tmux)
             green "Setting up tmux..."
@@ -70,8 +76,8 @@ handle_option() {
             rm -rf $HOME/.tmux.conf.bak
 
             echo
-            yellow "Note: You may need to install TPM by running command below:"
-            echo "git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm"
+            yellow "Note: You may need to install TPM by running the command below:"
+            yellow "git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm"
 
             add_dependency "tmux"
             ;;
@@ -84,7 +90,10 @@ handle_option() {
             rm -rf $CONFIG_PATH/kitty.bak
 
             echo
-            yellow "Note: You need to be using Kitty terminal emulator"
+            yellow "Note: You need to be using the Kitty terminal emulator which can be installed using the command below:"
+            yellow "curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin"
+
+            add_dependency "kitty"
             ;;
         scripts)
             green "Running scripts setup..."
@@ -104,9 +113,6 @@ handle_option() {
             cp -r ./config/nvim $CONFIG_PATH
 
             rm -rf $CONFIG_PATH/nvim.bak
-
-            echo
-            yellow "Note: Uses Lazy for plugin manager"
 
             add_dependency "neovim or nvim"
             add_dependency "rg"
@@ -132,6 +138,16 @@ handle_option() {
     esac
 }
 
+# Prints dependencies for installed configurations and tools
+print_dependencies() {
+    green "Fully Configured Everything!"
+    echo
+    echo "Dependencies (install using package manager):"
+    printf " - %s\n" "${DEPENDENCIES[@]}"
+    echo
+    yellow "Note: You may need to restart your terminal for changes to take effect"
+}
+
 # Ensure at least one argument is provided
 if [ "$#" -lt 1 ]; then
     red "ERROR: At least one argument is required."
@@ -143,12 +159,7 @@ if [[ " $* " == *" all "* ]]; then
     handle_option all
 
     echo
-    green "Fully Configured Everything!"
-    echo
-    echo "Dependencies (install using package manager):"
-    printf " - %s\n" "${DEPENDENCIES[@]}"
-    echo
-    yellow "Note: You may need to restart your terminal for changes to take effect"
+    print_dependencies
 
     exit 0
 fi
@@ -159,10 +170,4 @@ for arg in "$@"; do
     echo
 done
 
-echo
-green "Fully Configured $@"
-echo
-echo "Dependencies (install using package manager):"
-printf " - %s\n" "${DEPENDENCIES[@]}"
-echo
-yellow "Note: You may need to restart your terminal for changes to take effect"
+print_dependencies
