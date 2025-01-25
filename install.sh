@@ -110,6 +110,7 @@ handle_option() {
 
             add_dependency "neovim or nvim"
             add_dependency "rg"
+            add_dependency "deno (If you want to use Peek)"
             ;;
         all)
             echo "Running full setup for all options..."
