@@ -53,7 +53,7 @@ handle_option() {
             backup_file $HOME/.zshrc
             backup_file $HOME/.zsh_profile
 
-            cp -r ./zsh/ $HOME
+            cp -r ./zsh/. $HOME
 
             rm -rf $HOME/.zshrc.bak
             rm -rf $HOME/.zsh_profile.bak
@@ -62,22 +62,33 @@ handle_option() {
             yellow "Note: You may need to install oh-my-zsh by running the command below:"
             yellow "sh -c \"\$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\""
 
-            add_dependency "zsh"
+            echo
+            yellow "Note: You may need to install the oh-my-zsh nord-extended theme as well by running the command below"
+            yellow "git clone https://github.com/fxbrit/nord-extended $ZSH/themes/nord-extended"
 
             echo
-            chsh -s $(which zsh) || (red "ERROR: zsh needs to be installed, install zsh and then run 'chsh -s \$\(which zsh\)'"; exit 1)
+            if [[ "$SHELL" == *"zsh"* ]]; then
+                echo "Setting Shell to zsh.."
+                chsh -s $(which zsh) || (red "ERROR: zsh needs to be installed, install zsh and then run 'chsh -s \$\(which zsh\)'"; exit 1)
+            else
+                red "Need to install zsh!!"
+                add_dependency "zsh"
+            fi
             ;;
         tmux)
             green "Setting up tmux..."
             backup_file $HOME/.tmux.conf
 
-            cp -r ./tmux/ $HOME
+            cp -r ./tmux/. $HOME
 
             rm -rf $HOME/.tmux.conf.bak
 
             echo
             yellow "Note: You may need to install TPM by running the command below:"
             yellow "git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm"
+
+            echo
+            yellow "You also need to remember to press prefix + I on first installation to install plugins"
 
             add_dependency "tmux"
             ;;
