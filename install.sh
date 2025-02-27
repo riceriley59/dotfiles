@@ -129,8 +129,40 @@ handle_option() {
             add_dependency "rg"
             add_dependency "deno (If you want to use Peek)"
             ;;
+        i3)
+            green "Setting up i3 with polybar..."
+            backup_file $CONFIG_PATH/i3
+            backup_file $CONFIG_PATH/polybar
+
+            cp -r ./config/i3 $CONFIG_PATH
+            cp -r ./config/polybar $CONFIG_PATH
+
+            rm -rf $CONFIG_PATH/i3.bak
+            rm -rf $CONFIG_PATH/polybar.bak
+
+            echo
+            yellow "Note: You need to restart i3 in order for the polybar to show \"mod4+Shift+R\""
+
+            add_dependency "i3"
+            add_dependency "polybar"
+            ;;
         all)
             echo "Running full setup for all options..."
+            echo
+            handle_option zsh
+            echo
+            handle_option tmux
+            echo
+            handle_option kitty
+            echo
+            handle_option scripts
+            echo
+            handle_option nvim
+            echo
+            handle_option i3
+            ;;
+        all-mac)
+            echo "Running full setup for all options besides i3 since macs don't support it..."
             echo
             handle_option zsh
             echo
@@ -163,6 +195,16 @@ print_dependencies() {
 if [ "$#" -lt 1 ]; then
     red "ERROR: At least one argument is required."
     print_help
+fi
+
+# Check if "all" is in the arguments
+if [[ " $* " == *" all-mac "* ]]; then
+    handle_option all-mac
+
+    echo
+    print_dependencies
+
+    exit 0
 fi
 
 # Check if "all" is in the arguments
