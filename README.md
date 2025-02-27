@@ -13,7 +13,7 @@ chmod +x install.sh
 ./install.sh all
 ```
 
-**Note:** You can choose which dotfiles to install by passing the name of the tool in lowercase to the script (e.g `tmux`, `scripts`, or `nvim`) or pass `all` to install all of the dotfiles as seen above. (**Note:** There is a also a all-mac option which installs everything except for i3 and polybar since macs don't support them)
+**Note:** You can choose which dotfiles to install by passing the name of the tool in lowercase to the script (e.g `tmux`, `scripts`, or `nvim`) or pass `all` to install all of the dotfiles as seen above. All of the support options are listed below. There is a also a all-mac option which installs everything except for i3 and polybar since macs don't support them.
 
 # tmux
 My Tmux configuration includes custom key bindings, status bar settings, and various plugins to improve the terminal workflow. It is designed to increase productivity and provide a comfortable, efficient terminal environment.
@@ -50,10 +50,10 @@ This script can be run with a name as a command which will then create a tmux se
 #### dependencies
 * fzf
 
-# i3/Polybar
+# i3
 This sets up the i3 configuration if your on linux and will also install Polybar. This is a minimal, light, and poweful window manager and my personal favorite to use on any linux distro. This configuration is for i3-gaps which is a little different than base i3 but the config should still be backwards compatible.
 
-The Polybar setup is a collection of themes which I altered and adjusted myself. You can see the original themes here: [polybar-collection](https://github.com/Murzchnvok/polybar-collection)
+The Polybar setup is a collection of themes which I altered and adjusted myself, and I use the minimalist theme. You can see the original themes here: [polybar-collection](https://github.com/Murzchnvok/polybar-collection)
 
 ### dependencies
 * i3
