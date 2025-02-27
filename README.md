@@ -49,3 +49,12 @@ This script can be run with a name as a command which will then create a tmux se
 
 #### dependencies
 * fzf
+
+# i3/Polybar
+This sets up the i3 configuration if your on linux and will also install Polybar. This is a minimal, light, and poweful window manager and my personal favorite to use on any linux distro. This configuration is for i3-gaps which is a little different than base i3 but the config should still be backwards compatible.
+
+The Polybar setup is a collection of themes which I altered and adjusted myself. You can see the original themes here: [polybar-collection](https://github.com/Murzchnvok/polybar-collection)
+
+### dependencies
+* i3
+* polybar
