@@ -19,7 +19,7 @@ return {
                 },
                 custom_filter = function(buf_num)
                     local ft = vim.bo[buf_num].filetype
-                    return ft ~= "fugitive"
+                    return ft ~= "fugitive" and ft ~= "git" and ft ~= "gitcommit"
                 end,
             },
             highlights = {
