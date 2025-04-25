@@ -17,6 +17,10 @@ return {
                         seperator = true,
                     }
                 },
+                custom_filter = function(buf_num)
+                    local ft = vim.bo[buf_num].filetype
+                    return ft ~= "fugitive"
+                end,
             },
             highlights = {
                 fill = {
