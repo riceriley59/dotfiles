@@ -42,6 +42,12 @@ My `Kitty` terminal configuration includes settings that enhance the visual expe
 ### dependencies
 * kitty: `curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin`
 
+# ghostty
+My `Ghostty` terminal configuration includes settings that enhance the visual experience, such as themes, font styles, and behavior customizations. There is also a kitty configuration in here although I'm currently using this.
+
+### dependencies
+* ghostty
+
 # scripts
 
 ### tmux-sessionizer

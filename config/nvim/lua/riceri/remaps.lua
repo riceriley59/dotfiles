@@ -18,6 +18,9 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 vim.keymap.set({ "n", "v" }, "<leader>d", "\"_d")
 
+vim.keymap.set("n", "<leader>/", "gcc", { remap = true })
+vim.keymap.set("v", "<leader>/", "gc", { remap = true })
+
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<leader>rf", vim.lsp.buf.format)
 

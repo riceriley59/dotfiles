@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-OPTIONS="zsh tmux kitty scripts nvim all"
+OPTIONS="zsh tmux ghostty kitty scripts nvim all"
 
 CONFIG_PATH="$HOME/.config"
 LOCAL_PATH="$HOME/.local"
@@ -106,6 +106,19 @@ handle_option() {
 
             add_dependency "kitty"
             ;;
+        ghostty)
+            green "Configuring ghostty terminal..."
+            backup_file $CONFIG_PATH/ghostty
+
+            cp -r ./config/ghostty $CONFIG_PATH
+
+            rm -rf $CONFIG_PATH/ghostty.bak
+
+            echo
+            yellow "Note: You need to be using the Ghostty terminal emulator which can be installed using your package manager."
+
+            add_dependency "ghostty"
+            ;;
         scripts)
             green "Running scripts setup..."
             backup_file $LOCAL_PATH/scripts
@@ -153,7 +166,7 @@ handle_option() {
             echo
             handle_option tmux
             echo
-            handle_option kitty
+            handle_option ghostty
             echo
             handle_option scripts
             echo
@@ -168,7 +181,7 @@ handle_option() {
             echo
             handle_option tmux
             echo
-            handle_option kitty
+            handle_option ghostty
             echo
             handle_option scripts
             echo
