@@ -171,7 +171,7 @@ bindcode $mod+Shift+90 	 move container to workspace  10
 ######################################
 
 # start a terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec ghostty
 
 # kill focused window
 bindsym $mod+q kill
