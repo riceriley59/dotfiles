@@ -31,3 +31,15 @@ vim.keymap.set("n", "<leader><leader>", function()
 end)
 
 vim.keymap.set("n", "<leader>n", "<cmd>NvimTreeToggle<cr>")
+
+vim.keymap.set("n", "<leader>w", function()
+    if vim.wo.wrap then
+        vim.opt.wrap = false
+        vim.opt.linebreak = false
+        vim.opt.breakindent = false
+    else
+        vim.opt.wrap = true
+        vim.opt.linebreak = true
+        vim.opt.breakindent = true
+    end
+end)
