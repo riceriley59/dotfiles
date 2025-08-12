@@ -34,6 +34,7 @@ return {
                 "lua_ls",
                 "rust_analyzer",
                 "gopls",
+                "pyright",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -71,6 +72,21 @@ return {
                             }
                         }
                     }
+                end,
+                ["pyright"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.pyright.setup({
+                        capabilities = capabilities,
+                        settings = {
+                            python = {
+                                analysis = {
+                                    typeCheckingMode = "basic", -- or "strict"
+                                    autoSearchPaths = true,
+                                    useLibraryCodeForTypes = true,
+                                },
+                            },
+                        },
+                    })
                 end,
             }
         })

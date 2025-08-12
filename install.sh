@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-OPTIONS="zsh tmux ghostty kitty scripts nvim all"
+OPTIONS="zsh tmux ghostty kitty scripts nvim all all-mac"
 
 CONFIG_PATH="$HOME/.config"
 LOCAL_PATH="$HOME/.local"
