@@ -33,7 +33,7 @@ configs:
       - "Remember to press prefix + I on first installation to install plugins"
 
   ghostty:
-    source: ../files/config/ghostty
+    source: ../files/ghostty
     dest: $CONFIG/ghostty
     copy_mode: directory
     dependencies:
@@ -42,7 +42,7 @@ configs:
       - "Install Ghostty using your package manager"
 
   kitty:
-    source: ../files/config/kitty
+    source: ../files/kitty
     dest: $CONFIG/kitty
     copy_mode: directory
     dependencies:
@@ -53,7 +53,7 @@ configs:
         curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 
   scripts:
-    source: ../files/bin/.local/scripts
+    source: ../files/scripts
     dest: $LOCAL/scripts
     copy_mode: directory
     dependencies:
@@ -61,7 +61,7 @@ configs:
       - fzf
 
   nvim:
-    source: ../files/config/nvim
+    source: ../files/nvim
     dest: $CONFIG/nvim
     copy_mode: directory
     dependencies:
@@ -70,7 +70,7 @@ configs:
       - deno (optional, for Peek plugin)
 
   i3:
-    source: ../files/config/i3
+    source: ../files/i3
     dest: $CONFIG/i3
     copy_mode: directory
     dependencies:
@@ -79,7 +79,7 @@ configs:
       - 'Restart i3 for polybar to show: mod4+Shift+R'
 
   polybar:
-    source: ../files/config/polybar
+    source: ../files/polybar
     dest: $CONFIG/polybar
     copy_mode: directory
     dependencies:

@@ -33,7 +33,7 @@ configs:
       - "Remember to press prefix + I on first installation to install plugins"
 
   ghostty:
-    source: ../files/config/ghostty
+    source: ../files/ghostty
     dest: $CONFIG/ghostty
     copy_mode: directory
     dependencies:
@@ -42,7 +42,7 @@ configs:
       - "Install Ghostty using your package manager or from https://ghostty.org"
 
   kitty:
-    source: ../files/config/kitty
+    source: ../files/kitty
     dest: $CONFIG/kitty
     copy_mode: directory
     dependencies:
@@ -53,7 +53,7 @@ configs:
         curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 
   scripts:
-    source: ../files/bin/.local/scripts
+    source: ../files/scripts
     dest: $LOCAL/scripts
     copy_mode: directory
     dependencies:
@@ -61,10 +61,21 @@ configs:
       - fzf
 
   nvim:
-    source: ../files/config/nvim
+    source: ../files/nvim
     dest: $CONFIG/nvim
     copy_mode: directory
     dependencies:
       - neovim
       - ripgrep
       - deno (optional, for Peek plugin)
+
+  aerospace:
+    source: ../files/aerospace
+    dest: $CONFIG/aerospace
+    copy_mode: directory
+    dependencies:
+      - aerospace
+    notes:
+      - |
+        Install Aerospace:
+        brew install --cask nikitabobko/tap/aerospace
