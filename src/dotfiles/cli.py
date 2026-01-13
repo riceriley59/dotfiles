@@ -35,7 +35,7 @@ def main() -> None:
 
     # Resolve config path
     config_file = args.config.resolve()
-    
+
     if not config_file.exists():
         print_red(f"Error: Configuration file not found: {config_file}")
         sys.exit(1)
@@ -51,7 +51,7 @@ def main() -> None:
         sys.exit(1)
 
     configs = config_data.get("configs", {})
-    
+
     if not configs:
         print_yellow("No configurations found in config file.")
         sys.exit(0)
@@ -63,13 +63,13 @@ def main() -> None:
     # Install each configuration
     for name, config in configs.items():
         print_green(f"Installing {name}...")
-        
+
         notes = installer.install(name, config)
         if notes is not None:
             source = (base_dir / config["source"]).resolve()
             dest = expand_path(config["dest"])
             print(f"  {source} -> {dest}")
-            
+
             # Print warnings for this config
             if notes:
                 print()
@@ -81,21 +81,23 @@ def main() -> None:
                     if i < len(notes) - 1:
                         print()
         else:
-            print_red(f"  Error: Source not found")
-        
+            print_red("  Error: Source not found")
+
         print()
 
     # Print summary
     print_green("Installation complete!")
     print()
-    
+
     if installer.dependencies:
         print_yellow("Dependencies (install using your package manager):")
         for dep in sorted(installer.dependencies):
             print(f"  - {dep}")
         print()
-    
-    print_yellow("Note: You may need to restart your terminal for changes to take effect")
+
+    print_yellow(
+        "Note: You may need to restart your terminal for changes to take effect"
+    )
 
 
 if __name__ == "__main__":

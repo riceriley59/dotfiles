@@ -2,6 +2,7 @@
 
 import shutil
 from pathlib import Path
+from typing import Any
 
 from dotfiles.config import expand_path
 
@@ -11,7 +12,7 @@ class Installer:
 
     def __init__(self, base_dir: Path, home: Path | None = None):
         """Initialize the installer.
-        
+
         Args:
             base_dir: Base directory where source configs are located.
             home: Home directory for installations. Defaults to Path.home().
@@ -22,10 +23,10 @@ class Installer:
 
     def backup(self, path: Path) -> Path | None:
         """Backup a file or directory if it exists.
-        
+
         Args:
             path: Path to backup.
-        
+
         Returns:
             Path to the backup file, or None if nothing was backed up.
         """
@@ -33,19 +34,19 @@ class Installer:
             return None
 
         backup_path = path.with_suffix(path.suffix + ".bak")
-        
+
         if backup_path.exists():
             if backup_path.is_dir():
                 shutil.rmtree(backup_path)
             else:
                 backup_path.unlink()
-        
+
         shutil.move(path, backup_path)
         return backup_path
 
     def copy_directory(self, src: Path, dst: Path) -> None:
         """Copy a directory tree, replacing the destination.
-        
+
         Args:
             src: Source directory.
             dst: Destination directory.
@@ -57,7 +58,7 @@ class Installer:
 
     def copy_contents(self, src: Path, dst: Path) -> None:
         """Copy contents of src directory into dst directory.
-        
+
         Args:
             src: Source directory.
             dst: Destination directory.
@@ -70,13 +71,13 @@ class Installer:
             else:
                 shutil.copy2(item, dest_item)
 
-    def install(self, name: str, config: dict) -> list[str] | None:
+    def install(self, name: str, config: dict[str, Any]) -> list[str] | None:
         """Install a single configuration based on YAML spec.
-        
+
         Args:
             name: Name of the configuration.
             config: Configuration dictionary with source, dest, etc.
-        
+
         Returns:
             List of notes for this config if successful, None if failed.
         """
@@ -117,14 +118,17 @@ class Installer:
             self.dependencies.add(dep)
 
         # Return notes for this config
-        return config.get("notes", [])
+        notes: list[str] = config.get("notes", [])
+        return notes
 
-    def install_all(self, configs: dict[str, dict]) -> dict[str, list[str] | None]:
+    def install_all(
+        self, configs: dict[str, dict[str, Any]]
+    ) -> dict[str, list[str] | None]:
         """Install all configurations.
-        
+
         Args:
             configs: Dictionary of config name to config spec.
-        
+
         Returns:
             Dictionary of config name to notes (or None if failed).
         """

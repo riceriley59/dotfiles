@@ -2,3 +2,10 @@
 .venv
 .pytest_cache
 __pycache__
+
+# Ignore mypy and ruff caches
+.mypy_cache
+.ruff_cache
+
+# MacOS
+.DS_Store

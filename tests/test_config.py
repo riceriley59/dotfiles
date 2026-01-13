@@ -1,6 +1,5 @@
 """Tests for configuration loading and path expansion."""
 
-import tempfile
 from pathlib import Path
 
 import pytest
