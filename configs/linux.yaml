@@ -1,0 +1,86 @@
+# Dotfiles configuration for Linux
+
+configs:
+  zsh:
+    source: ../files/zsh
+    dest: $HOME
+    copy_mode: contents
+    backup_files:
+      - .zshrc
+      - .zsh_profile
+    dependencies:
+      - zsh
+    notes:
+      - |
+        You may need to install oh-my-zsh:
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+      - |
+        You may need to install the nord-extended theme:
+        git clone https://github.com/fxbrit/nord-extended $ZSH/themes/nord-extended
+
+  tmux:
+    source: ../files/tmux
+    dest: $HOME
+    copy_mode: contents
+    backup_files:
+      - .tmux.conf
+    dependencies:
+      - tmux
+    notes:
+      - |
+        You may need to install TPM:
+        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+      - "Remember to press prefix + I on first installation to install plugins"
+
+  ghostty:
+    source: ../files/config/ghostty
+    dest: $CONFIG/ghostty
+    copy_mode: directory
+    dependencies:
+      - ghostty
+    notes:
+      - "Install Ghostty using your package manager"
+
+  kitty:
+    source: ../files/config/kitty
+    dest: $CONFIG/kitty
+    copy_mode: directory
+    dependencies:
+      - kitty
+    notes:
+      - |
+        Install Kitty:
+        curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+
+  scripts:
+    source: ../files/bin/.local/scripts
+    dest: $LOCAL/scripts
+    copy_mode: directory
+    dependencies:
+      - tmux
+      - fzf
+
+  nvim:
+    source: ../files/config/nvim
+    dest: $CONFIG/nvim
+    copy_mode: directory
+    dependencies:
+      - neovim
+      - ripgrep
+      - deno (optional, for Peek plugin)
+
+  i3:
+    source: ../files/config/i3
+    dest: $CONFIG/i3
+    copy_mode: directory
+    dependencies:
+      - i3
+    notes:
+      - 'Restart i3 for polybar to show: mod4+Shift+R'
+
+  polybar:
+    source: ../files/config/polybar
+    dest: $CONFIG/polybar
+    copy_mode: directory
+    dependencies:
+      - polybar
