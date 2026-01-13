@@ -79,3 +79,14 @@ configs:
       - |
         Install Aerospace:
         brew install --cask nikitabobko/tap/aerospace
+
+  linearmouse:
+    source: ../files/linearmouse
+    dest: $CONFIG/linearmouse
+    copy_mode: directory
+    dependencies:
+      - linearmouse
+    notes:
+      - |
+        Install LinearMouse:
+        brew install --cask linearmouse
