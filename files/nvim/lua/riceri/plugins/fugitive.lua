@@ -16,8 +16,14 @@ return {
 
                 local bufnr = vim.api.nvim_get_current_buf()
                 local opts = {buffer = bufnr, remap = false}
+
+                -- push settings
                 vim.keymap.set("n", "<leader>p", function()
                     vim.cmd.Git('push')
+                end, opts)
+
+                vim.keymap.set("n", "<leader>fp", function()
+                    vim.cmd.Git({'push', '--force-with-lease'})
                 end, opts)
 
                 -- rebase always
