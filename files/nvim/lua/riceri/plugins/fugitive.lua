@@ -22,13 +22,13 @@ return {
                     vim.cmd.Git('push')
                 end, opts)
 
-                vim.keymap.set("n", "<leader>fp", function()
-                    vim.cmd.Git({'push', '--force-with-lease'})
+                vim.keymap.set("n", "<leader>pf", function()
+                    vim.cmd.Git('push --force-with-lease')
                 end, opts)
 
                 -- rebase always
                 vim.keymap.set("n", "<leader>P", function()
-                    vim.cmd.Git({'pull',  '--rebase'})
+                    vim.cmd.Git('pull --rebase')
                 end, opts)
 
                 -- NOTE: It allows me to easily set the branch i am pushing and any tracking
