@@ -22,7 +22,7 @@ return {
                     vim.cmd.Git('push')
                 end, opts)
 
-                vim.keymap.set("n", "<leader>pf", function()
+                vim.keymap.set("n", "<leader>f", function()
                     vim.cmd.Git('push --force-with-lease')
                 end, opts)
 
